@@ -1,4 +1,4 @@
-function merge(arr1, arr2) {
+function mergeSorted(arr1, arr2) {
   let arr = [],
     i = 0,
     j = 0;
@@ -14,6 +14,6 @@ function mergeSort(arr) {
   console.log(arr);
   if (arr.length <= 1) return arr;
   let mid = Math.floor(arr.length / 2);
-  return merge(mergeSort(arr.slice(0, mid)), mergeSort(arr.slice(mid)));
+  return mergeSorted(mergeSort(arr.slice(0, mid)), mergeSort(arr.slice(mid)));
 }
 console.log(mergeSort([5, 9, 0, 1, 7, 2, 3, 8, 6, 4]));

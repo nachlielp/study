@@ -98,7 +98,7 @@ function isSubsequence(sub, str) {
   }
   return false;
 }
-// console.log(isSubsequence("hello", "hello world")); // true
+// console.log(isSubsequence("hello", "hell world")); // true
 // console.log(isSubsequence("sing", "sting")); // true
 // console.log(isSubsequence("abc", "abracadabra")); // true
 // console.log(isSubsequence("abc", "acb")); // false (order matters)
@@ -189,11 +189,11 @@ function findLongestSubstring(str) {
   return max;
 }
 
-console.log(findLongestSubstring("")); // 0
-console.log(findLongestSubstring("abcbcba")); // 3
-console.log(findLongestSubstring("rithmschool")); // 7
-console.log(findLongestSubstring("thisisawesome")); // 6
-console.log(findLongestSubstring("thecatinthehat")); // 7
-console.log(findLongestSubstring("bbbbbb")); // 1
-console.log(findLongestSubstring("longestsubstring")); // 8
-console.log(findLongestSubstring("thisishowwedoit")); // 6
+// console.log(findLongestSubstring("")); // 0
+// console.log(findLongestSubstring("abcbcba")); // 3
+// console.log(findLongestSubstring("rithmschool")); // 7
+// console.log(findLongestSubstring("thisisawesome")); // 6
+// console.log(findLongestSubstring("thecatinthehat")); // 7
+// console.log(findLongestSubstring("bbbbbb")); // 1
+// console.log(findLongestSubstring("longestsubstring")); // 8
+// console.log(findLongestSubstring("thisishowwedoit")); // 6
