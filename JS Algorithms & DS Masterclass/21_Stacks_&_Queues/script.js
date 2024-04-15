@@ -4,7 +4,7 @@ class Node {
     this.next = null;
   }
 }
-class Queue {
+export class Queue {
   constructor() {
     this.first = null;
     this.last = null;
@@ -38,18 +38,18 @@ class Queue {
   }
 }
 const queue = new Queue();
-console.log(queue.enqueue("a"));
-console.log(queue.enqueue("b"));
-console.log(queue.enqueue("c"));
-console.log(queue.enqueue("d"));
-console.log(queue.dequeue());
-console.log(queue.peek());
-console.log(queue.isEmpty());
-console.log(queue.dequeue());
-console.log(queue.dequeue());
-console.log(queue.dequeue());
-console.log(queue.dequeue());
-console.log(queue.isEmpty());
+// console.log(queue.enqueue("a"));
+// console.log(queue.enqueue("b"));
+// console.log(queue.enqueue("c"));
+// console.log(queue.enqueue("d"));
+// console.log(queue.dequeue());
+// console.log(queue.peek());
+// console.log(queue.isEmpty());
+// console.log(queue.dequeue());
+// console.log(queue.dequeue());
+// console.log(queue.dequeue());
+// console.log(queue.dequeue());
+// console.log(queue.isEmpty());
 class Stack {
   constructor() {
     this.first = null;

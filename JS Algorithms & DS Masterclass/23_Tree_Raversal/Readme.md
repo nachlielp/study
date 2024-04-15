@@ -9,3 +9,9 @@ DFS has 3 types:
 1. In-order traversal: This visits the left subtree, then the current node, and finally the right subtree.
 2. Pre-order traversal: This visits the current node, then the left subtree, and finally the right subtree.
 3. Post-order traversal: This visits the left subtree, then the right subtree, and finally the current node.
+
+### BFS
+
+To implement BFS we use a queue. We start at the root node and add it to the queue. We then remove the node from the queue and visit it. We then add all of its children to the queue. We repeat this process until the queue is empty.
+
+### DFS
