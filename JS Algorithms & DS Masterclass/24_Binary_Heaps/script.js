@@ -90,28 +90,27 @@ class PriorityQueue {
   }
   sinkDown() {
     if (this.values.length < 2) return;
-    if (
-      this.values.length === 2 &&
-      this.values[0].priority > this.values[1].priority
-    ) {
-      this.swap(0, 1);
+    if (this.values.length === 2) {
+      this.values[0].priority > this.values[1].priority && this.swap(0, 1);
       return;
     }
     let i = 0;
     while (2 * i + 1 < this.values.length) {
       const childAI = 2 * i + 1;
-      if (this.values[i].priority > this.values[childAI].priority) {
-        this.swap(i, childAI);
-        i = childAI;
-      } else if (
-        2 * i + 2 < this.values.length &&
-        this.values[i].priority > this.values[childAI + 1].priority
+      let higherP;
+      if (
+        this.values[i].priority < this.values[childAI].priority &&
+        this.values[i].priority < this.values[childAI + 1].priority
       ) {
-        this.swap(i, childAI + 1);
-        i = childAI + 1;
-      } else {
         break;
+      } else {
+        higherP =
+          this.values[childAI].priority < this.values[childAI + 1].priority
+            ? childAI
+            : childAI + 1;
       }
+      this.swap(i, higherP);
+      i = higherP;
     }
   }
   swap(i, j) {
@@ -126,6 +125,7 @@ pq.enqueue(2, 2);
 pq.enqueue(3, 3);
 pq.enqueue(1, 1);
 pq.enqueue(4, 4);
+pq.enqueue(9, 9);
 
 pq.dequeue();
 console.log(pq.values);
