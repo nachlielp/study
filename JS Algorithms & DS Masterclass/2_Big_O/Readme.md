@@ -5,18 +5,22 @@
 
 Ex 1: AddUpTo:
 
-`function addUpTo_1(n) {
+```
+function addUpTo_1(n) {
  let total = 0;
   for (let i = 1; i <= n; i++) {
     total += i;
   }
   return total;
-}`
+}
+```
 
-`
+```
 function addUpTo_2(n) {
   return (n * (n + 1)) / 2;
-}`
+}
+```
+
 //(1+2+3...+n)+(n+(n-1)+(n-2)...+1) = n(n+1)
 
 What way is better?
@@ -31,13 +35,16 @@ addUpTo_2 does 3 operations, regardless of the size of n - constant f(n)=1 -> O(
 
 But what we care is not the exact number of operations, but the general trend. So with addUpTo_1 we can say that the number of operations grows roughly in proportion to n, while with addUpTo_2 the number of operations is constant.
 
-`function printAllPairs(n) {
+```
+function printAllPairs(n) {
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       console.log(i, j);
     }
   }
-}`
+}
+```
+
 printAllPairs(n) does n operations n times, so it does n^2 operations - quadratic f(n)=n^2 -> O(n^2)
 
 <h2>Auxiliary Space Complexity</h2>
