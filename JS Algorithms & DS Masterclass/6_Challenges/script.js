@@ -1,8 +1,5 @@
 //Given two positive integers, find out if the two numbers have the same frequency of digits.
 //Your solution MUST have the following complexities:
-
-const { copyStringIntoBuffer } = require("pdf-lib");
-
 //Time: O(N)
 function sameFrequency(x, y) {
   const fqX = {};

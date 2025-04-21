@@ -1,6 +1,6 @@
 ## Stack
 
-Stack is an astrict linear data structure that follows the LIFO (Last In First Out) principle. This means that the last element added to the stack is the first one to be removed.
+Stack is an abstract linear data structure that follows the LIFO (Last In First Out) principle. This means that the last element added to the stack is the first one to be removed.
 
 A stack has the following methods:
 
@@ -11,7 +11,7 @@ A stack has the following methods:
 
 ## Queue
 
-Queue is an astrict linear data structure that follows the FIFO (First In First Out) principle. This means that the first element added to the queue is the first one to be removed.
+Queue is an abstract linear data structure that follows the FIFO (First In First Out) principle. This means that the first element added to the queue is the first one to be removed.
 
 A queue has the following methods:
 
