@@ -18,7 +18,7 @@ We add a script to the package.json to trigger the migrations.
 Then run
 
 ```bash
-npm run migrate create table comments
+npm run migrate create NAME_OF_MIGRATION
 ```
 
 This will create a new migration file in the migrations folder looking like this:
