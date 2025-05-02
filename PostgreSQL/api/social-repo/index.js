@@ -11,7 +11,6 @@ pool
     password: "",
   })
   .then(() => {
-    //The pool files a select 1+1 to make sure that it is connected, returning a promise, only if fulfilled we move on to start the ap
     app().listen(PORT, () => {
       console.log("Listening on port: ", PORT);
     });
