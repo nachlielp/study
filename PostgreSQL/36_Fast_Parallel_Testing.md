@@ -59,4 +59,23 @@ CREATE TABLE test.users (
 
 ### Routing Schema access
 
-Since we fist try to connect to a db with a machting name to the user connection, we can use the following command to connect to the test database:
+in order to run multiple test in parallel we can create multiple schemas for each test file.
+
+we have a [Context](./api/social-repo/src/test/context.js) object that is used to create a new schema for each test file, we run it before all tests and close it after all tests.
+
+then after each test we reset the database to the initial state.
+
+```js
+let context;
+beforeAll(async () => {
+  context = await Context.build();
+});
+
+beforeEach(async () => {
+  await context.reset();
+});
+
+afterAll(() => {
+  return context.close();
+});
+```
