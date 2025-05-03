@@ -43,6 +43,11 @@ class UserRepo {
     );
     return toCamelCase(rows)[0];
   }
+
+  async count() {
+    const { rows } = await pool.query("SELECT COUNT(*) FROM users;");
+    return parseInt(rows[0].count);
+  }
 }
 
 const userRepo = new UserRepo();
