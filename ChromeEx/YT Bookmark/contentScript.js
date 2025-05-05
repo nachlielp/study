@@ -20,7 +20,7 @@
       });
       response(currentVideoBookmarks);
     } else if (type === "MAIN") {
-      setTimeout(() => removeShortsElements(), 0);
+      setTimeout(() => removeShortsElements(), 2000);
     }
   });
 
@@ -123,6 +123,35 @@
       shortsContiner.style.display = "none";
     }
   }
+
+  function handleNewElements(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach((node) => {
+          // Example: Check if the node is a video or comment element
+          if (node.nodeType === 1) {
+            // Element node
+            // Replace with your selector or logic
+            if (node.matches && node.matches(".your-target-selector")) {
+              // Handle the new element
+              console.log("New element detected:", node);
+              node.style.display = "none";
+            }
+          }
+        });
+      }
+    }
+  }
+
+  // Start observing the body for added nodes
+  const observer = new MutationObserver(handleNewElements);
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  // Optionally, handle elements already present on initial load
+  document.querySelectorAll(".your-target-selector").forEach((node) => {
+    console.log("New element detected, first run:", node);
+    node.style.display = "none";
+  });
 })();
 
 const getTime = (t) => {
