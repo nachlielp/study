@@ -19,6 +19,8 @@
         [currentVideo]: JSON.stringify(currentVideoBookmarks),
       });
       response(currentVideoBookmarks);
+    } else if (type === "MAIN") {
+      setTimeout(() => removeShortsElements(), 0);
     }
   });
 
@@ -102,6 +104,23 @@
         },
         { once: true }
       );
+    }
+  }
+
+  function removeShortsElements() {
+    console.log("removeShortsElements");
+    //Test remove shorts button
+    const shortsLink = document.querySelector('a#endpoint[title="Shorts"]');
+
+    if (shortsLink) {
+      console.log("Removing Shorts Btn");
+      shortsLink.style.display = "none";
+    }
+
+    const shortsContiner = document.querySelector("ytd-rich-section-renderer");
+    if (shortsContiner) {
+      console.log("Removing Shorts Continer");
+      shortsContiner.style.display = "none";
     }
   }
 })();

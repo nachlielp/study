@@ -13,7 +13,9 @@
 // });
 
 //To handle reloads where the tab is undefined, reach out and get it
-chrome.tabs.onUpdated.addListener((tabId, tab) => {
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status !== "complete") return; // Wait for page to finish loading
+
   const processTab = (tabInfo) => {
     const url = tabInfo.url;
 
@@ -24,6 +26,10 @@ chrome.tabs.onUpdated.addListener((tabId, tab) => {
       chrome.tabs.sendMessage(tabId, {
         type: "NEW",
         videoId: urlParameters.get("v"),
+      });
+    } else {
+      chrome.tabs.sendMessage(tabId, {
+        type: "MAIN",
       });
     }
   };
