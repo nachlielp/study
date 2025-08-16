@@ -24,7 +24,7 @@ function columnsToRows(matrix) {
 
 function isValidRows(matrix) {
   return matrix.every(isValidRow);
-}
+ }
 
 function isValidRow(items) {
   items = items.filter((c) => c !== empty);

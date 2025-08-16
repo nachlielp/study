@@ -1,0 +1,60 @@
+### Day 2 — Async, event loop, DOM, browser APIs (rules)
+
+- **Goal**: Be fluent in async and show practical browser skills.
+
+#### Session 1 (Event loop, microtasks vs macrotasks, Promises)
+
+- **Study**
+  - [ ] Task queues and microtask ordering
+  - [ ] Promise states and chaining
+- **Drills**
+  - [ ] Predict `console.log` ordering puzzles
+  - [ ] Implement `sleep(ms)`
+  - [ ] Implement `timeoutPromise(promise, ms)`
+  - [ ] Polyfill `promiseAll` and `promiseAllSettled`
+  - [ ] Concurrency limiter: `limit(fnArray, k)`
+
+#### Session 2 (Fetch, HTTP, CORS, AbortController)
+
+- **Study**
+  - [ ] Fetch basics: headers, status handling, JSON
+  - [ ] CORS: simple vs preflight requests
+  - [ ] `AbortController` for cancellation
+- **Drills**
+  - [ ] `fetchJSON(url, { signal })` with error normalization
+  - [ ] `fetchWithRetry(url, { retries, backoff })` with exponential backoff
+  - [ ] In‑memory cache with `Map` + TTL
+  - [ ] `debounce(fn, wait, { leading, trailing })`
+  - [ ] `throttle(fn, wait, { leading, trailing })`
+
+#### Session 3 (DOM, events, forms, delegation)
+
+- **Study**
+  - [ ] DOM APIs: `querySelector`, `classList`, `dataset`
+  - [ ] Event propagation: capture vs bubble; delegation patterns
+  - [ ] `preventDefault` and default behaviors
+- **Drills**
+  - [ ] Build a small Todo app using event delegation on a parent
+  - [ ] Add accessible keyboard interactions for buttons/links
+  - [ ] Minimize layout thrash; batch UI updates with `requestAnimationFrame`
+
+#### Session 4 (Web storage + security basics)
+
+- **Study**
+  - [ ] `localStorage` vs `sessionStorage`; cookies vs storage
+  - [ ] XSS basics; dangers of `innerHTML`; sanitization; CSP overview
+- **Drills**
+  - [ ] Store/retrieve user settings in `localStorage` with JSON try/catch
+  - [ ] Demonstrate a naive `innerHTML` exploit and fix via `textContent` or a sanitizer
+
+#### Session 5 (Mini‑mock — 60 minutes)
+
+- **Rules**
+  - [ ] Solve 1 async coding task (e.g., `promiseAny` or `fetchWithRetry` + `AbortController`)
+  - [ ] Answer 5–8 short theory questions (event loop order, CORS vs same‑origin, capturing vs bubbling, `==` vs `===`)
+
+#### Deliverables (end of Day 2)
+
+- [ ] Utilities: `debounce`, `throttle`, `promiseAll`/`AllSettled`/`Any`, concurrency limiter, `fetchWithRetry`, cache with TTL
+- [ ] Small DOM project (Todo with delegation)
+- [ ] Notes on event loop, CORS, storage, and XSS mitigations

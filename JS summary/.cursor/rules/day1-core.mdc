@@ -1,0 +1,67 @@
+### Day 1 — Core language mastery (rules)
+
+- **Goal**: Be rock‑solid on language fundamentals and common coding drills.
+
+#### Session 1 (Scope, closures, this, call/apply/bind)
+
+- **Study**
+  - [ ] Lexical scope and closures
+  - [ ] Practical closure use cases (encapsulation, memoization)
+  - [ ] `this` in functions vs arrow functions
+  - [ ] `call` / `apply` / `bind`
+- **Drills**
+  - [ ] Build a counter with closures exposing `inc`, `dec`, `value`
+  - [ ] Implement `once(fn)` wrapper
+  - [ ] Implement a basic `bind` polyfill
+
+#### Session 2 (Prototypes, classes, object model)
+
+- **Study**
+  - [ ] Prototype chain and method lookup
+  - [ ] `Object.create` and `Object.getPrototypeOf`
+  - [ ] Classes, inheritance, and private fields
+- **Drills**
+  - [ ] Polyfill `instanceof` as `myInstanceOf(obj, Ctor)`
+  - [ ] Implement a class hierarchy with override and `super`
+  - [ ] Implement `myNew(Ctor, ...args)` operator behavior
+
+#### Session 3 (Arrays, objects, immutability)
+
+- **Study**
+  - [ ] `map` / `filter` / `reduce` basics and pitfalls
+  - [ ] Sort comparators and stability
+  - [ ] `Set` and `Map` use cases
+  - [ ] Shallow vs deep copy semantics
+- **Drills**
+  - [ ] `groupBy(arr, keyOrFn)`
+  - [ ] `unique(arr)` using `Set` and variant for objects by key
+  - [ ] `flatten(arr, depth)` and `flattenDeep(arr)`
+  - [ ] `deepClone` with `structuredClone` fallback and JSON trade‑offs note
+
+#### Session 4 (Types, coercion, equality, errors)
+
+- **Study**
+  - [ ] Primitives vs objects; truthy/falsy
+  - [ ] Optional chaining and nullish coalescing
+  - [ ] Error handling patterns: `try/catch/finally`, custom `Error`
+- **Drills**
+  - [ ] `safeGet(obj, path, defaultValue)`
+  - [ ] Robust `parseNumber(str)` (commas, NaN handling)
+  - [ ] `deepMerge(objA, objB)`
+
+#### Session 5 (Algorithm warm‑ups — arrays/strings)
+
+- **Rules**
+  - [ ] Do 4–6 timed problems (15–20 min each) with quick tests
+  - [ ] Prefer clean, readable code with stated complexity
+  - [ ] Cover at least:
+    - [ ] Two‑sum style (O(n))
+    - [ ] Longest substring w/o repeat (O(n))
+    - [ ] Anagram check (O(n))
+    - [ ] Merge intervals (O(n log n))
+    - [ ] Binary search (O(log n))
+
+#### Deliverables (end of Day 1)
+
+- [ ] Notes on closures/this/prototypes
+- [ ] Utilities implemented: `once`, `myBind`, `myInstanceOf`, `myNew`, `groupBy`, `unique`, `flatten`, `deepClone`, `deepMerge`

@@ -1,0 +1,70 @@
+<link href="popup.css" rel="stylesheet" type="text/css" />
+<script type="module" src="popup.js"></script>
+
+<div class="container">
+  <div>
+    <div class="title">Iframe Refresher</div>
+    <div class="domain-info">
+      <span class="domain-label">Current domain:</span>
+      <span class="domain-name" id="domain-name">Loading...</span>
+    </div>
+
+    <div class="iframe-section">
+      <div class="section-title">Iframe Selector Settings</div>
+      <div class="iframe-item-container">
+        <label for="iframe-attribute">Attribute:</label>
+        <input
+          type="text"
+          id="iframe-attribute"
+          class="textbox"
+          value="title"
+          placeholder="Enter attribute (e.g., title, name, id, data-test)"
+        />
+      </div>
+      <div class="iframe-item-container">
+        <label for="iframe-name">Value:</label>
+        <input
+          type="text"
+          id="iframe-name"
+          class="textbox"
+          placeholder="Enter iframe name"
+        />
+        <button id="save-name" class="btn">Save</button>
+      </div>
+    </div>
+
+    <div class="keystroke-section">
+      <div class="section-title">Keyboard Shortcut</div>
+      <div class="keystroke-container">
+        <label for="keystroke-display">Current shortcut:</label>
+        <input
+          type="text"
+          id="keystroke-display"
+          class="textbox"
+          readonly
+          placeholder="No shortcut set"
+        />
+        <button id="record-keystroke" class="btn">Record New</button>
+        <div id="recording-status" class="recording-status hidden">
+          Press your key combination and release...
+        </div>
+      </div>
+    </div>
+
+    <div class="iframe-list-section">
+      <div class="section-title">Detected Iframes</div>
+      <div class="iframe-list" id="iframe-list">
+        <div class="no-iframes">No iframes detected on this page</div>
+      </div>
+    </div>
+
+    <div class="controls-section">
+      <button id="refresh-iframes" class="btn btn-primary">
+        Refresh Iframes
+      </button>
+      <button id="test-shortcut" class="btn btn-secondary">
+        Test Shortcut
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+---
+alwaysApply: true
+---
+
+You are a software agent helping to build a Chrome extension called
+“Per-Domain Iframe Reloader”.
+
+Goal
+
+- For any web-site domain the user can register
+  - the iframe name attribute to target
+  - a keyboard shortcut (Ctrl/Alt/Shift + single key)
+- When the shortcut is pressed on a page whose hostname matches the rule,
+  the extension finds the iframe by its name attribute and reloads it.
+  High-level design
+
+- Manifest V3 extension
+- One content script injected into every page
+- popup page where the user manages rules
+- Configuration is stored with chrome.storage.sync
+- Key detection is done inside the content script (not with chrome.commands, so shortcuts can be changed freely by the user)
+- Permissions: storage, scripting, host_permissions “:///\*”
+  Mandatory file/folder layout
+
+- manifest.json
+- content.js
+- popup.html
+- icons/16.png 32.png 48.png 128.png (placeholders are fine)
+  Detailed requirements
+
+1. manifest.json
+
+- manifest_version 3
+- name “Iframe Refresher”
+- version “1.0.0”
+- description “Reload a chosen iframe with a custom shortcut per domain.”
+- options_page “options.html”
+- permissions [“storage”, “scripting”]
+- host_permissions [“:///*”]
+- content_scripts: one entry that matches “<all_urls>” and injects src/content.js
+
+1. options.html + src/options.js
+
+- UI lets the user
+  - add a rule (domain, iframe name, capture a shortcut)
+  - list & delete existing rules
+- “Capture shortcut” button listens to the next keydown and shows it as text like “Ctrl+Alt+R”
+- Persist rules in chrome.storage.sync as
+  {
+  "<domain>": { iframeName: "<name>", shortcut: "Ctrl+Alt+R" },
+  ...
+  }
+
+1. src/content.js
+
+- On page load read the hostname, fetch the rule for that hostname from chrome.storage.sync
+- If a rule exists, attach a single keydown listener: -
+  Ignore events when event.target is input, textarea or content-editable
+
+      -
+
+  Compare the pressed keys with the stored combination (case-insensitive on the letter)
+
+      -
+
+  When they match, run
+
+const iframe = document.querySelector(
+iframe[name="${rule.iframeName}"]
+);
+if (iframe && iframe.contentWindow) {
+iframe.contentWindow.location.reload();
+}
+
+Conventions
+
+- Use modern JS (const/let, arrow functions, template literals, strict equality)
+- Wrap chrome.\* APIs in Promises where helpful
+- Format all code with Prettier, printWidth 80
+  Testing checklist

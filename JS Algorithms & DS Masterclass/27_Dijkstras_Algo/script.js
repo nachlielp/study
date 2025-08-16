@@ -94,73 +94,81 @@ class WeightedGraph {
     }
     return result;
   }
+
+  dijkstra(start, end) {
+    const visited = new Set();
+    const previous = {};
+    const distances = {};
+    const nodes = new PriorityQueue();
+
+    for (let node in this.adjacencyList) {
+      distances[node] = Infinity;
+      previous[node] = null;
+    }
+
+    distances[start] = 0;
+    nodes.enqueue(start, 0);
+
+    while (visited.size < Object.keys(this.adjacencyList).length) {
+      const current = nodes.dequeue();
+      visited.add(current);
+      const neighbors = this.getVertex(current.val);
+      for (let neighbor of neighbors) {
+        nodes.enqueue(neighbor.node, neighbor.weight);
+        if (neighbor.weight < distances[neighbor.node]) {
+          distances[neighbor.node] = neighbor.weight;
+          previous[neighbor.node] = current.val;
+        }
+      }
+      delete distances[current.val];
+    }
+
+    const path = [end];
+    let tPath = end;
+    while (tPath !== start) {
+      tPath = previous[tPath];
+      path.unshift(tPath);
+    }
+
+    console.log(path);
+  }
+}
+
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  }
+
+  enqueue(val, priority) {
+    this.values.push({ val, priority });
+    this.sort();
+  }
+
+  dequeue() {
+    return this.values.shift();
+  }
+
+  sort() {
+    this.values.sort((a, b) => a.priority - b.priority);
+  }
 }
 
 let g = new WeightedGraph();
 
-g.addVertex("A");
-g.addVertex("B");
-g.addVertex("C");
-g.addVertex("D");
-g.addVertex("E");
-g.addVertex("F");
+g.addVertex('A');
+g.addVertex('B');
+g.addVertex('C');
+g.addVertex('D');
+g.addVertex('E');
+g.addVertex('F');
 
-g.addEdge("A", "B", 4);
-g.addEdge("A", "C", 2);
-g.addEdge("C", "D", 2);
-g.addEdge("C", "F", 4);
-g.addEdge("D", "F", 1);
-g.addEdge("D", "E", 3);
-g.addEdge("B", "E", 3);
-g.addEdge("F", "E", 1);
+g.addEdge('A', 'B', 4);
+g.addEdge('A', 'C', 2);
+g.addEdge('B', 'E', 3);
+g.addEdge('C', 'D', 2);
+g.addEdge('C', 'F', 4);
+g.addEdge('D', 'E', 3);
+g.addEdge('D', 'F', 1);
+g.addEdge('F', 'E', 1);
 
-const start = "A";
-const end = "E";
-
-dijkstra(start, end, g);
-
-function dijkstra(start, end, graph) {
-  const visited = [];
-  const previous = {};
-  const shortestDis = {};
-
-  for (let node of Object.keys(graph.adjacencyList)) {
-    shortestDis[node] = Infinity;
-    previous[node] = null;
-  }
-  shortestDis[start] = 0;
-
-  while (visited.length < Object.keys(graph.adjacencyList).length) {
-    let shortestNotVisited;
-    let shortestDestince = Infinity;
-    for (let node of Object.keys(shortestDis)) {
-      if (!visited.includes(node) && shortestDis[node] < shortestDestince) {
-        shortestDestince = shortestDis[node];
-        shortestNotVisited = node;
-      }
-    }
-    visited.push(shortestNotVisited);
-
-    const neighbours = graph.getVertex(shortestNotVisited);
-    for (let neighbour of neighbours) {
-      if (neighbour.weight < shortestDis[neighbour.node]) {
-        shortestDis[neighbour.node] = neighbour.weight;
-        previous[neighbour.node] = shortestNotVisited;
-      }
-    }
-    delete shortestDis[shortestNotVisited];
-  }
-
-  let path = `->${end}`;
-  let tPath = end;
-  while (tPath !== start) {
-    tPath = previous[tPath];
-    if (tPath === start) {
-      path = `${tPath}` + path;
-    } else {
-      path = `->${tPath}` + path;
-    }
-  }
-
-  console.log(path);
-}
+g.dijkstra('A', 'E');

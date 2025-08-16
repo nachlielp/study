@@ -1,0 +1,59 @@
+### Day 3 — Patterns, performance, Node/tooling, full mock (rules)
+
+- **Goal**: Tie it together, practice interview‑style tasks, and polish.
+
+#### Session 1 (Node basics and tooling)
+
+- **Study**
+  - [ ] ESM vs CJS
+  - [ ] `package.json` scripts and npm basics
+  - [ ] Environment variables
+  - [ ] Basic file I/O
+- **Drills**
+  - [ ] Write a tiny CLI: read JSON, transform, write output
+  - [ ] Add quick tests via Node `assert` or Jest for utilities
+
+#### Session 2 (Patterns to implement quickly)
+
+- **Study**
+  - [ ] Module and revealing module patterns
+  - [ ] Pub/Sub vs `EventEmitter`
+  - [ ] Currying, `compose`/`pipe`
+  - [ ] Immutability patterns
+- **Drills**
+  - [ ] `EventEmitter` with `on`/`off`/`once`/`emit`
+  - [ ] `curry(fn)` and `compose(...fns)`
+  - [ ] LRU cache (Map + doubly‑linked logic, or simplified for small size)
+
+#### Session 3 (Performance, memory, debugging, Big‑O)
+
+- **Study**
+  - [ ] Chrome DevTools: Sources, Network, Performance
+  - [ ] Perf pitfalls: `innerHTML` in loops, unnecessary reflows
+  - [ ] Memory leaks: dangling listeners, closures; `WeakMap`/`WeakSet`
+  - [ ] Big‑O recap: O(1), O(log n), O(n), O(n log n), O(n^2)
+- **Drills**
+  - [ ] Optimize nested loop to O(n) with a `Map`
+  - [ ] Refactor a DOM loop to batch updates
+  - [ ] Use breakpoints and logpoints in DevTools
+
+#### Session 4 (Full mock test — 90 minutes)
+
+- **Rules (choose two coding tasks)**
+  - [ ] Deep flatten with depth arg and circular reference protection
+  - [ ] Implement `Promise.any` (or limit concurrency)
+  - [ ] Event delegation mini‑app: interactive list with filters and debounced search
+  - [ ] LRU cache with `get`/`put` and capacity
+- **Rapid‑fire questions (10–15)**
+  - [ ] Hoisting rules, TDZ, `this` binding rules, prototypes vs `__proto__`
+  - [ ] Microtask vs macrotask examples
+  - [ ] CORS: what triggers preflight? How to avoid?
+  - [ ] `null` vs `undefined`; optional chaining vs nullish coalescing
+  - [ ] Why use `WeakMap`? Example
+
+#### Session 5 (Review and cheat sheet — 35 minutes)
+
+- **Rules**
+  - [ ] Summarize patterns, pitfalls, and code snippets you’re most likely to need
+  - [ ] Create a one‑page checklist from your notes
+  - [ ] 20 minutes: speak through one solved problem out loud as if interviewing

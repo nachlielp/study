@@ -1,0 +1,6 @@
+- thred of execution - top to bottom
+  - saves data into memory
+  - add to execution context - the call stack
+- execution context - when running a function, a new execution context is created with a new variable environment
+  - notice that when running a loop, its its own name space, but not its own execution context
+- call stack - keeps track of the execution context (at the base of the stack is the global execution context)

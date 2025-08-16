@@ -1,0 +1,35 @@
+### One‑page checklist (rules)
+
+- **Block usage (each 55‑minute session)**
+
+  - [ ] 5 min: scan notes/examples
+  - [ ] 35–40 min: hands‑on coding
+  - [ ] 5–10 min: self‑check and quick tests
+  - [ ] 5 min: write 3–5 flashcards
+
+- **What interviewers often test — be ready to explain**
+
+  - [ ] Closures and practical uses (encapsulation, memoization)
+  - [ ] `this` binding rules; arrow vs function
+  - [ ] Prototypes vs classes; inheritance mechanics
+  - [ ] Array methods and when to use which; stable sorting with comparator
+  - [ ] Event loop ordering; microtasks vs macrotasks; async/await error handling
+  - [ ] Debounce vs throttle and when to use each
+  - [ ] DOM event delegation; `preventDefault` vs `stopPropagation`
+  - [ ] Fetch + `AbortController`; basic CORS
+  - [ ] Security basics: avoid unsafe `innerHTML`
+  - [ ] Be explicit about Big‑O: O(n), O(n log n), etc.
+
+- **References (use during plan)**
+
+  - [ ] MDN Web Docs: JavaScript Guide, Promise docs, Fetch API, DOM Events
+  - [ ] javascript.info: Fundamentals, Objects, Prototypes, Async, DOM
+  - [ ] Eloquent JavaScript: functions, objects, async chapters
+  - [ ] Practice: LeetCode (easy/medium arrays/strings/maps), Frontend Interview Handbook (JS)
+
+- **End‑of‑plan deliverables**
+  - [ ] Utility implementations across days (see day rules files)
+  - [ ] A small DOM project (Todo with delegation)
+  - [ ] Notes on event loop, CORS, storage, and XSS mitigations
+  - [ ] Full mock test completed and reviewed
+  - [ ] Final condensed cheat sheet
