@@ -1,3 +1,5 @@
+// SELECTION SORT: Finds the minimum element in each pass and places it at the beginning.
+// Makes fewer swaps than bubble sort but always performs O(n²) comparisons regardless of input.
 const swap = (arr, i1, i2) => {
   [arr[i1], arr[i2]] = [arr[i2], arr[i1]];
 };

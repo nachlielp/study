@@ -1,3 +1,5 @@
+// INSERTION SORT: Builds the sorted array one element at a time by inserting each element
+// into its correct position. Very efficient for small datasets and nearly sorted arrays.
 function insertionSort(arr) {
   for (let i = 1; i < arr.length; i++) {
     let minI = -1;

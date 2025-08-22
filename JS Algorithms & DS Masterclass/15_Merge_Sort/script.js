@@ -1,3 +1,5 @@
+// MERGE SORT: Divide-and-conquer algorithm that splits array into halves, sorts them recursively,
+// then merges them back. Guaranteed O(n log n) time complexity and is a stable sort.
 function mergeSorted(arr1, arr2) {
   let arr = [],
     i = 0,

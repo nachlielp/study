@@ -1,3 +1,5 @@
+// RADIX SORT: Non-comparison based sorting algorithm that sorts by individual digits.
+// Works by distributing elements into buckets based on each digit. Time complexity: O(nk) where k is number of digits.
 const getDigit = (el, d) => {
   return Math.floor((Math.abs(el) / Math.pow(10, d)) % 10);
 };

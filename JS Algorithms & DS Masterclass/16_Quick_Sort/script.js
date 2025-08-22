@@ -1,3 +1,5 @@
+// QUICK SORT: In-place sorting algorithm using pivot partitioning. Average case O(n log n)
+// but worst case O(n²). Widely used in practice due to its efficiency and cache-friendly nature.
 const swap = (arr, i, j) => {
   [arr[i], arr[j]] = [arr[j], arr[i]];
 };
