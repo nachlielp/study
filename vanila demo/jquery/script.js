@@ -3,7 +3,7 @@ import { weatherService } from "./services/weather.service.js";
 var gWeathers = [];
 var gSelectedId = null;
 
-$(document).ready(function () {
+$(document).ready(() => {
   weatherService.query().then((weathers) => {
     gWeathers = weathers;
     renderWeatherList();
@@ -65,7 +65,7 @@ $(document).on("click", "#close-btn", () => {
 
 $(document).on("click", "#save-btn", () => {
   const name = $("#city-name").val();
-  const temperature = $("#city-temperature").val();
+  const temperature = +$("#city-temperature").val();
   const weather = gWeathers.find((w) => w.id === gSelectedId);
   weather.location.name = name;
   weather.current.temp_c = temperature;
