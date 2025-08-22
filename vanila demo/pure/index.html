@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Demo</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" type="module"></script>
+  </head>
+  <body onload="onInit()">
+    <div class="container">
+      <section class="search-container">
+        <input
+          type="text"
+          placeholder="Search for citys"
+          class="search-input"
+        />
+        <button class="search-button" onclick="onSearch()">Search</button>
+      </section>
+
+      <article class="weather-list-header">
+        <h2>Weather List</h2>
+        <div class="filters">
+          <button
+            class="filter-btn active"
+            onclick="onFilter('all')"
+            id="all-btn"
+          >
+            All
+          </button>
+          <button class="filter-btn" onclick="onFilter('hot')" id="hot-btn">
+            Hot
+          </button>
+          <button class="filter-btn" onclick="onFilter('nice')" id="nice-btn">
+            Nice
+          </button>
+          <button class="filter-btn" onclick="onFilter('cold')" id="cold-btn">
+            Cold
+          </button>
+        </div>
+      </article>
+      <article class="weather-list-container" id="weather-list">
+        <table class="weather-list">
+          <thead>
+            <tr>
+              <th>City</th>
+              <th>Temperature</th>
+              <th>Weather</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </article>
+      <article class="no-weather-container" id="no-weathers">
+        <h2>Empty list</h2>
+        <p>Please search for a city</p>
+      </article>
+      <div class="mask hidden" id="modal-mask">
+        <div class="modal actions-modal" id="actions-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>Actions</h2>
+              <button class="close-btn" onclick="toggleModal('')">
+                <span class="close-btn-icon">&#10006;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="modal-body-item">
+                <label for="city-name">Name</label>
+                <input type="text" id="city-name" />
+              </div>
+              <div class="modal-body-item">
+                <label for="city-temperature">Temperature</label>
+                <input type="number" id="city-temperature" />
+              </div>
+              <div class="modal-body-footer">
+                <button class="save-btn" onclick="onSave()">
+                  Save Changes
+                </button>
+                <button class="delete-btn" onclick="onDelete()">
+                  Delete City
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
