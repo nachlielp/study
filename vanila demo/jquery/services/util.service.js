@@ -4,6 +4,8 @@ export const utilService = {
   makeId,
   getDayName,
   getMonthName,
+  validateName,
+  validateNum,
 };
 
 function makeId(length = 6) {
@@ -48,4 +50,21 @@ function getMonthName(date) {
     "December",
   ];
   return monthNames[date.getMonth()];
+}
+
+function validateName(name, title) {
+  if (!name || name.trim() === "") {
+    alert(`Please enter a valid ${title} name`);
+    return false;
+  }
+  return true;
+}
+
+function validateNum(num, title) {
+  if (isNaN(num) || num === "") {
+    alert(`Please enter a valid ${title}`);
+    return false;
+  }
+
+  return true;
 }

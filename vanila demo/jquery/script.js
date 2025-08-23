@@ -1,53 +1,66 @@
 import { weatherService } from "./services/weather.service.js";
+import { utilService } from "./services/util.service.js";
 
 var gWeathers = [];
 var gSelectedId = null;
 
-$(document).ready(() => {
-  weatherService.query().then((weathers) => {
-    gWeathers = weathers;
-    renderWeatherList();
-  });
-});
+$(document).ready(init);
 
-$("#search-btn").on("click", async () => {
+$("#search-btn").on("click", handleSearch);
+$(".filter-btn").on("click", handleFilter);
+
+$("#close-btn").on("click", closeModal);
+$("#save-btn").on("click", saveWeather);
+$("#delete-btn").on("click", deleteWeather);
+
+$(document).on("click", ".action-btn", handleAction);
+
+async function init() {
+  try {
+    gWeathers = await weatherService.query();
+    renderWeatherList();
+  } catch (error) {
+    console.error("Error loading weather data: ", error);
+    alert("Failed to initialize app. Please reload to try again.");
+  }
+}
+
+async function handleSearch() {
   const cityName = $("#search-input").val().trim();
   if (!cityName) return;
   $("#search-input").val("");
   try {
     const weather = await weatherService.searchWeather(cityName);
     const savedWeather = await weatherService.save(weather);
-    const weatherExists = gWeathers.find((w) => w.id === savedWeather.id);
-    if (!weatherExists) {
-      gWeathers.push(savedWeather);
+
+    const existingIndex = gWeathers.findIndex((w) => w.id === savedWeather.id);
+    if (existingIndex >= 0) {
+      gWeathers[existingIndex] = savedWeather;
     } else {
-      gWeathers[gWeathers.indexOf(weatherExists)] = savedWeather;
+      gWeathers.push(savedWeather);
     }
+
     renderWeatherList();
   } catch (error) {
     console.error("Error searching weather:", error.message);
-    return;
+    alert("Failed to search weather. Please try again.");
   }
-});
+}
 
-$(".filter-btn").on("click", (e) => {
-  const filter = $(e.target).data("filter");
+function handleFilter(ev) {
+  const filter = $(ev.target).data("filter");
 
   $(".filter-btn").removeClass("active");
-  $(e.target).addClass("active");
+  $(ev.target).addClass("active");
 
-  weatherService
-    .query({ status: filter })
-    .then((weathers) => {
-      gWeathers = weathers;
-    })
-    .then(() => {
-      renderWeatherList();
-    });
-});
+  weatherService.query({ status: filter }).then((weathers) => {
+    gWeathers = weathers;
+    renderWeatherList();
+  });
+}
 
-$(document).on("click", ".action-btn", (e) => {
-  const id = $(e.target).data("id");
+function handleAction(ev) {
+  const id = $(ev.target).data("id");
   const weather = gWeathers.find((w) => w.id === id);
   if (weather) gSelectedId = weather.id;
   else gSelectedId = null;
@@ -57,35 +70,58 @@ $(document).on("click", ".action-btn", (e) => {
     $("#city-temperature").val(weather.current.temp_c);
     $("#city-name").val(weather.location.name);
   }
-});
+}
 
-$(document).on("click", "#close-btn", () => {
+function closeModal() {
   $("#modal-mask").addClass("hidden");
-});
+}
 
-$(document).on("click", "#save-btn", () => {
-  const name = $("#city-name").val();
-  const temperature = +$("#city-temperature").val();
+async function saveWeather() {
+  const name = $("#city-name").val().trim();
+  const temperature = $("#city-temperature").val();
+
+  if (
+    !utilService.validateName(name, "city") ||
+    !utilService.validateNum(temperature, "temperature")
+  ) {
+    return;
+  }
+
   const weather = gWeathers.find((w) => w.id === gSelectedId);
   weather.location.name = name;
   weather.current.temp_c = temperature;
-  weatherService.save(weather).then((savedWeather) => {
-    gWeathers[gWeathers.indexOf(weather)] = savedWeather;
-    $("#modal-mask").addClass("hidden");
-    renderWeatherList();
-  });
-});
 
-$(document).on("click", "#delete-btn", () => {
+  try {
+    const savedWeather = await weatherService.save(weather);
+    const wIndex = gWeathers.findIndex((w) => w.id === savedWeather.id);
+    gWeathers[wIndex] = savedWeather;
+    gWeathers[gWeathers.indexOf(weather)] = savedWeather;
+    closeModal();
+    renderWeatherList();
+  } catch (error) {
+    console.log("Error saving weather item, error: ", error);
+    alert("Error saving weather item, please try again");
+  }
+}
+
+async function deleteWeather() {
   const weather = gWeathers.find((w) => w.id === gSelectedId);
-  weatherService.remove(weather.id).then(() => {
+
+  try {
+    await weatherService.remove(weather.id);
     gWeathers = gWeathers.filter((w) => w.id !== gSelectedId);
     renderWeatherList();
-    $("#modal-mask").addClass("hidden");
-  });
-});
+    closeModal();
+  } catch (error) {
+    console.error("Error deleting weather item, error: ", error);
+    alert("Error deleting weather item, please try again");
+  }
+}
 
 function renderWeatherList() {
+  const $weatherList = $(".weather-list tbody");
+  $weatherList.empty();
+
   if (gWeathers.length === 0) {
     $("#weather-list").addClass("hidden");
     $("#no-weathers").removeClass("hidden");
@@ -95,8 +131,7 @@ function renderWeatherList() {
   $("#no-weathers").addClass("hidden");
   $("#weather-list").removeClass("hidden");
 
-  const $weatherList = $(".weather-list tbody");
-  $weatherList.empty();
+  const $frag = $(document.createDocumentFragment());
 
   gWeathers.forEach((weather) => {
     const $weatherItem = $(`
@@ -111,6 +146,8 @@ function renderWeatherList() {
         </td>
       </tr>
     `);
-    $weatherList.append($weatherItem);
+    $frag.append($weatherItem);
   });
+
+  $weatherList.append($frag);
 }
