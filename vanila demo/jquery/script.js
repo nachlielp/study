@@ -47,16 +47,21 @@ async function handleSearch() {
   }
 }
 
-function handleFilter(ev) {
+async function handleFilter(ev) {
   const filter = $(ev.target).data("filter");
 
   $(".filter-btn").removeClass("active");
   $(ev.target).addClass("active");
 
-  weatherService.query({ status: filter }).then((weathers) => {
+  try {
+    const weathers = await weatherService.query({ status: filter });
     gWeathers = weathers;
+  } catch (error) {
+    console.error("Error filtering weather:", error.message);
+    alert("Failed to filter weather. Please try again.");
+  } finally {
     renderWeatherList();
-  });
+  }
 }
 
 function handleAction(ev) {
@@ -84,6 +89,7 @@ async function saveWeather() {
     !utilService.validateName(name, "city") ||
     !utilService.validateNum(temperature, "temperature")
   ) {
+    alert("Please enter a valid city and temperature");
     return;
   }
 
